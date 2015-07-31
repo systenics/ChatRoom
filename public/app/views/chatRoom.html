@@ -1,0 +1,167 @@
+<!-- Full Width Column -->
+<div class="content-wrapper" style="overflow:hidden;height:100%">
+  <div class="container">
+    <!-- Main content -->
+    <section class="content">                          
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="box box-warning direct-chat direct-chat-warning">
+              <div class="box-header with-border">
+                <h3 class="box-title">Chat Room</h3>
+                <div class="box-tools pull-right">
+                  <!-- Any File Select Button -->
+                  <button class="btn btn-box-tool mobile" data-widget="" ngf-select ng-model="Files"><i class="glyphicon glyphicon-paperclip"></i></button>
+                  <!-- onlime member list mobile -->
+                  <button class="btn btn-box-tool mobile toggle-contact-icon" data-toggle="tooltip" data-widget="chat-pane-toggle" title="Contacts" ng-click="toggleCustom()"><i class="fa fa-comments"></i></button>
+                </div>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages" schroll-bottom="messeges">
+                  <!-- Message. Default to the left -->
+                  <div ng-repeat="messege in messeges" ng-class="{'direct-chat-msg' : true, 'right' : messege.ownMsg, 'wordwrap' : true}" >
+                    <div class='direct-chat-info clearfix'>
+                      <span class='direct-chat-name pull-left'>{{ messege.username }}</span>
+                      <span class='direct-chat-timestamp pull-right'>{{ messege.msgTime }}</span>
+                    </div><!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" ng-src="app/css/dist/img/{{messege.userAvatar}}" alt="message user image" /><!-- /.direct-chat-img -->
+                    <div ng-class="{'direct-chat-text' : true, 'text-right' : messege.ownMsg}">
+                      <div ng-hide="hasFile">{{ messege.msg }}</div>
+                      <!-- {{ messege.sendfile }} Media File Messeges -->
+                      <div class="item" ng-show="messege.hasFile">
+                          <div class="attachment clearfix">
+                          <!-- Image File Open -->
+                            <div ng-class="{'filename' : true,'chat-msg' : true}" ng-show="messege.isImageFile">
+                              <div>
+                                <div ng-class="{'attachment-icon-right' : messege.ownMsg, 'attachment-icon-left' : !messege.ownMsg}">
+                                  <a href ng-click="openClickImage(messege)" ng-show="messege.showme" >
+                              <img id="{{messege.dwid}}" width="50" height="50" ng-src="{{messege.dwimgsrc}}" alt="Open Image"></a> <!-- Open Icon -->
+                              
+                              <a ng-href="{{messege.serverfilename}}" data-lightbox="{{messege.dwid}}" data-title="{{messege.filename}}" ng-hide="messege.showme">
+                                <img ng-class="{'multiple-borders-white' : messege.ownMsg,'multiple-borders-black' : !messege.ownMsg}" id="{{messege.dwid+1}}" width="90" height="70" ng-src="{{messege.serverfilename}}" alt="Image File"> <!-- Image -->
+                              </a>
+                                </div>
+                                <div ng-class="{'attachment-msg-right' : messege.ownMsg, 'attachment-msg-left' : !messege.ownMsg}" ng-hide="messege.showme">
+                                  <span class="decs-text"><b>File :</b> {{ messege.filename}}</span>
+                                  <span class="decs-text"><b>Size :</b> {{messege.size}}</span>
+                                  <span class="decs-text">
+                                    <a id ="{{messege.dwid}}" class="decs-text" ng-show="messege.ownMsg"  onclick="return angular.element(this).scope().downloadImage(event,this)" href ><i class="fa fa-download dw-icon"></i> <i>Click here to download</i></a>
+                                  <a id ="{{messege.dwid}}" class="decs-text" ng-show="!messege.ownMsg"  onclick="return angular.element(this).scope().downloadImage(event,this)" href ><i>Click here to download</i> <i class="fa fa-download dw-icon"></i></a>
+                                  <a id ="{{messege.dwid}}A" class="decs-text hidden-link" href="{{ messege.serverfilename }}"  download="{{ messege.serverfilename }}"><i>Hidden Link</i></a>  
+                                  </span>
+                                </div>
+                                <div ng-class="{'attachment-msg-right' : messege.ownMsg, 'attachment-msg-left' : !messege.ownMsg}" ng-if="(messege.dwimgsrc !== 'app/images/spin.gif')" ng-show="messege.showme">
+                                  <span class="decs-text"><b>File :</b> {{ messege.filename}}</span>
+                                  <span class="decs-text"><b>Size :</b> {{messege.size}}</span>
+                                  <span class="decs-text">
+                                    <a id ="{{messege.dwid}}" class="decs-text" ng-show="messege.ownMsg"  onclick="return angular.element(this).scope().downloadImage(event,this)" href ><i class="fa fa-download dw-icon"></i> <i>Click here to download</i></a>
+                                  <a id ="{{messege.dwid}}" class="decs-text" ng-show="!messege.ownMsg"  onclick="return angular.element(this).scope().downloadImage(event,this)" href ><i>Click here to download</i> <i class="fa fa-download dw-icon"></i></a>
+                                  <a id ="{{messege.dwid}}A" class="decs-text hidden-link" href="{{ messege.serverfilename }}"  download="{{ messege.serverfilename }}"><i>Hidden Link</i></a>  
+                                  </span>
+                                </div>
+                              </div>
+                            </div> <!-- Image File Close -->
+
+
+                            <!-- Audio File Open -->
+                            <div ng-class="{'filename' : true, 'chat-msg' : true}" ng-show="messege.isMusicFile">
+                              <div ng-class="{'attachment-icon-right' : messege.ownMsg, 'attachment-icon-left' : !messege.ownMsg}">
+                                <a href ng-click="openClickMusic(messege)">
+                                <img id="{{messege.dwid}}" width="45" height="45" ng-src="{{messege.dwimgsrc}}" alt="Music File" title="play"></a>
+                              </div>
+                              <div ng-class="{'attachment-msg-right' : messege.ownMsg, 'attachment-msg-left' : !messege.ownMsg}">
+                                <span class="decs-text" ng-show="messege.showme"><b>File :</b> {{ messege.filename}}</span>
+                                <span class="decs-text" ng-show="messege.showme"><b>Size :</b> {{messege.size}}</span>
+                                <span class="decs-text" ng-show="messege.showme"><a id ="{{messege.dwid}}" class="decs-text" ng-show="messege.ownMsg" onclick="return angular.element(this).scope().downloadMusic(event,this)" href ><i class="fa fa-download dw-icon"></i> <i>Click here to download</i></a>
+                                <a id ="{{messege.dwid}}" class="decs-text" ng-show="!messege.ownMsg" onclick="return angular.element(this).scope().downloadMusic(event,this)" href ><i>Click here to download</i> <i class="fa fa-download dw-icon"></i></a>
+                                <a id ="{{messege.dwid}}A" class="decs-text hidden-link" href="{{ messege.serverfilename }}"  download="{{ messege.serverfilename }}"><i>Hidden Link</i></a></span>
+                              </div>
+                            </div><!-- Audio File Close -->
+
+                            <!-- Doc File Open -->
+                            <div ng-class="{'filename' : true, 'chat-msg' : true}" ng-show="messege.isPDFFile">
+                              <div ng-class="{'attachment-icon-right' : messege.ownMsg, 'attachment-icon-left' : !messege.ownMsg}">
+                                <a href ng-click="openClickPDF(messege)">
+                                <img id="{{messege.dwid}}" width="45" height="45" ng-src="{{messege.dwimgsrc}}" alt="Document"></a>
+                              </div>
+                              <div ng-class="{'attachment-msg-right' : messege.ownMsg, 'attachment-msg-left' : !messege.ownMsg}">
+                                <span class="decs-text" ng-show="messege.showme"><b>File :</b> {{ messege.filename}}</span>
+                                <span class="decs-text" ng-show="messege.showme"><b>Size :</b> {{messege.size}}</span>
+                                <span class="decs-text" ng-show="messege.showme"><a id ="{{messege.dwid}}" class="decs-text" ng-show="messege.ownMsg"  onclick="return angular.element(this).scope().downloadPDF(event,this)" href><i class="fa fa-download dw-icon"></i> <i>Click here to download</i></a>
+                                <a id ="{{messege.dwid}}" class="decs-text" ng-show="!messege.ownMsg"  onclick="return angular.element(this).scope().downloadPDF(event,this)" href><i>Click here to download</i> <i class="fa fa-download dw-icon"></i></a>
+                                <a id ="{{messege.dwid}}A" class="decs-text hidden-link" href="{{ messege.serverfilename }}"  download="{{ messege.serverfilename }}"><i>Hidden Link</i></a>  
+                                </span>
+                              </div>
+                            </div><!-- Doc file Close -->
+                          </div><!-- /.attachment -->
+                      </div><!-- /.item-->
+                    </div><!-- /.direct-chat-text -->
+                  </div><!-- /.direct-chat-msg -->
+                </div><!--/.direct-chat-messages-->
+
+                <div id="slidememberlist" class="slideout_inner">
+                    <!-- Contacts are loaded here -->
+                    <div>
+                    <div class="direct-chat-messages ol-members">
+                      <ul class='contacts-list'>
+                        <li ng-repeat="user in users">
+                          <a href>
+                            <img class='contacts-list-img' ng-src='app/css/dist/img/{{user.userAvatar}}'/>
+                            <div class='contacts-list-info'>
+                                <span class="ol-memeber-name" style="line-height:2.6; padding:5px; font-weight : 600; color : #333;">{{ user.username }}</span>
+                            </div><!-- /.contacts-list-info -->
+                          </a>
+                        </li><!-- End Contact Item -->
+                      </ul><!-- /.contatcts-list -->
+                    </div><!--/.direct-chat-messages-->
+                  </div>
+                </div>
+
+                <div class="chat-box"></div>
+              </div><!-- /.box-body -->
+              <div class="box-footer">
+                <div class="box-tools pull-right desktop">
+                  <!-- Any File Select Button -->
+                  <button class="btn btn-warning btn-flat" data-widget="" ngf-select ng-model="Files"><i class="glyphicon glyphicon-paperclip"></i></button>
+                </div>
+                <!-- Text message  -->
+                <form action="" method="post">
+                  <div class="input-group">
+                    <input type="text" name="message" placeholder="Type Message ..." ng-class="{'form-control': true, 'has-error':isMsgBoxEmpty}" ng-model="chatMsg" ng-change="isMsgBoxEmpty=false" ng-enter="sendMsg()" ng-focus="setFocus" focus-me="setFocus"/>
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-warning btn-flat" ng-click="sendMsg()">Send</button>
+                    </span>
+                  </div>
+                </form>
+              </div><!-- /.box-footer-->
+              </div><!-- /.box -->
+            </div>
+            
+            <div class="col-sm-3 toggle-contact-list">
+              <div class="box box-warning direct-chat direct-chat-warning">  
+              <div class="box-header with-border">
+                <h3 class="box-title">Online Members</h3>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <!-- Contacts are loaded here -->
+                <div class="direct-chat-messages ol-members">
+                  <ul class='contacts-list'>
+                    <li ng-repeat="user in users">
+                      <a href>
+                        <img class='contacts-list-img' ng-src='app/css/dist/img/{{user.userAvatar}}'/>
+                        <div class='contacts-list-info'>
+                            <span class="ol-memeber-name" style="line-height:2.6; padding:5px; font-weight : 600; color : #333;">{{ user.username }}</span>
+                        </div><!-- /.contacts-list-info -->
+                      </a>
+                    </li><!-- End Contact Item -->
+                  </ul><!-- /.contatcts-list -->
+                </div><!--/.direct-chat-messages-->
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+          </div>       
+      </div>
+    </section><!-- /.content -->
+  </div><!-- /.container -->
+</div><!-- /.content-wrapper -->
+
+

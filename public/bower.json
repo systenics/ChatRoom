@@ -1,0 +1,29 @@
+{
+  "name": "ChatRoom",
+  "version": "0.0.0",
+  "authors": [
+    "balkrishna0617 <balkrishnasawant0617@gmail.com>"
+  ],
+  "description": "File Sharing and chat application in realtime.",
+  "keywords": [
+    "Nodejs",
+    "File-Sharing",
+    "AngularJS",
+    "ChatRoom"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib/plugins",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-resource": "~1.4.1",
+    "angular-route": "~1.4.1",
+    "lightbox2": "~2.8.1"
+  }
+}

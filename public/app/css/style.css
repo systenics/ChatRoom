@@ -1,0 +1,209 @@
+*{margin:0;padding:0;}
+html,body{height:100%;}
+/* ============================= login Page =============================*/
+.avatar{
+	height : 65px; 
+	width : 65px; 
+	border-radius : 50%; 
+	margin-bottom : 0.5em; 
+	margin-left: 0.75em;
+}
+.avatar-thumb{
+	width : 24%;
+	display: inline-block;
+}
+.avatar-selected{
+	height : 65px; 
+	width : 65px;
+	border: 3px solid #fff;
+	box-shadow: inset 0 0 5px tomato, 0 0 5px black;
+}
+.login-box-body{
+	width: 360px;
+	margin:0px auto;
+}
+.has-error{
+	border-color: #dd4b39;
+}
+.errGroup{
+	margin-bottom: 0px;
+}
+.login-box-body .form-control-feedback.errText{
+	color: #dd4b39;
+}
+/* ============================= chatRoom Page ==========================*/
+.multiple-borders-white {
+  border: 4px solid rgba(255,255,255,0.5);
+  border-radius: 5px;
+}
+.multiple-borders-black {
+  border: 4px solid rgba(0,0,0,0.5);
+  border-radius: 5px;
+}
+.contacts-list{
+	background-color: #fff;
+}
+.ol-members{
+	padding: 0px 0px 0px 0px;
+}
+.ol-member-name{
+	margin: 0px;
+	line-height: 1.8;
+	padding: 5px;
+}
+.box-tools{
+	margin-left: 0.1em ;
+}
+.content-wrapper{
+	 background-color: transparent; 
+}
+.direct-chat-messages{
+	height : 450px;
+}
+.attachment-icon-right{
+	float : right;
+	padding: 5px 0px 0px 5px;
+}
+.attachment-icon-left{
+	float : left;
+	padding: 5px 5px 0px 0px;
+}
+.attachment-msg-right{
+	float : right;
+}
+.attachment-msg-left{
+	float : left;
+}
+.dw-icon{
+	font-size : 17px;
+}
+.hidden-link{
+	visibility: hidden;
+	position: absolute;
+	font-size: 1px;
+}
+.decs-text{
+	color : #333;
+	font-size: 12.5px;
+	margin: 0px;
+	display: block;
+}
+.decs-text:hover{
+	color: #333;
+}
+.wordwrap {    
+   word-wrap: break-word;      /* IE */
+}
+.chat-box{
+	height: 20px;
+	width: 100%;
+	position: absolute;
+	top: 97%;
+}
+#alert{
+	background-color: #000;
+	padding: 5px 10px;
+	color: #fff;
+	width: 150px;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 13px;
+	position: relative;
+	margin: 0px auto;
+	top : -10px;
+	z-index: 999;	 
+}
+.slideout_inner {
+    position: absolute;
+    top: 0px;
+    left: -250px;
+    background: #6DAD53;
+    width: 250px;
+    height: 100%;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    text-align: left;
+    -webkit-border-radius: 0 0 5px 0;
+    -moz-border-radius: 0 0 5px 0;
+    border-radius: 0 0 5px 0;
+    background-color: #fff;
+    border : 1px solid rgba(0,0,0,0.2);
+    overflow: auto;
+}
+.slideout_inner_trans {
+    left: 0;
+}
+#slidememberlist{
+	background-color: rgba(255,255,255,0.6);
+	overflow: hidden;
+}
+.chat-msg{
+	margin : 0px;
+}
+.mobile{
+	display: none;
+}
+.desktop{
+	display: block;
+}
+.toggle-contact-icon{
+	display: none;
+}
+.toggle-contact-list{
+	display: block;
+}
+.dw-left{
+	font-size : 20px; 
+	color : #333; 
+	float : left;
+}
+.dw-right{
+	font-size : 20px; 
+	color : #333; 
+	float : right;
+}
+/*============================ Sreen size 768px ============================*/
+@media screen and (max-width: 767px) {
+.login-box-body{
+	width: 280px;
+	margin:0px auto;
+}
+.avatar{
+	height : 50px; 
+	width : 50px; 
+	border-radius : 50%; 
+	margin-bottom : 0.5em; 
+	margin-left: 0.50em;
+}
+.avatar-thumb{
+	width : 24%;
+	display: inline-block;
+}
+.avatar-selected{
+	height : 50px; 
+	width : 50px;
+	border: 3px solid #fff;
+	box-shadow: inset 0 0 5px tomato, 0 0 5px black;
+}
+.toggle-contact-icon{
+	display: block;
+}
+.toggle-contact-list{
+	display: none;
+}
+}
+/*============================ Sreen size 480px ============================*/
+@media screen and (max-width: 479px) {
+.input-group{
+	width: 100%;
+	float: none;
+}
+.mobile{
+	display: inline-block;
+}
+.desktop{
+	display: none;
+}
+}
