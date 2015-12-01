@@ -16,14 +16,13 @@ NodeJS based Text, Image, File Real Time Chat Room.
 
 You need node,npm and bower installed globally:
 
-    - Step1: Clone ChatRoom repository locally
+- Step1: Clone ChatRoom repository locally
 ```sh
+$ git clone https://github.com/systenics/ChatRoom.git 
+```
 - Step2: cd into cloned directory <Ex : ChatRoom/> 
-```
 
-```sh
 - Step3: install dependencies using commands 
-```
 ```sh
 $ sudo npm install
 ```
